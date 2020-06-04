@@ -1,26 +1,45 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import "./styles.css";
 
-function App() {
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <>
+      <ContactCard
+        avatar="https://via.placeholder.com/150"
+        name="Jenny Han"
+        email="jenny.han@notreal.com"
+        age={25}
+      />
+      <ContactCard
+        avatar="https://via.placeholder.com/150"
+        name="Jason Long"
+        email="jason.long@notreal.com"
+        age={45}
+      />
+      <ContactCard
+        avatar="https://via.placeholder.com/150"
+        name="Peter Pan"
+        email="peter.pan@neverland.com"
+        age={100}
+      />
+    </>
+  );
+};
+
+const ContactCard = (props) => {
+  const [showAge, setShowAge] = useState(false);
+
+  return (
+    <div className="contact-card">
+      <img src={props.avatar} alt="profile" />
+      <div className="user-details">
+        <p>Name: {props.name}</p>
+        <p>Email: {props.email}</p>
+        {showAge && <p>Age: {props.age}</p>}
+        <button onClick={() => setShowAge(!showAge)}>Toggle Age</button>
+      </div>
     </div>
   );
-}
+};
 
 export default App;
